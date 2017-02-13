@@ -16,32 +16,70 @@ namespace ClockApp
         private int _minuteDeg;
         private int _hourDeg;
 
-        public int GetMinutes()
+        public void TimeSplitter()
         {
-            return _minutes;
+            SetMinutes((_userInput % 1000) % 100);
+            SetHours((_userInput - _minutes) / 100);
         }
-        public int GetHours()
+
+        public void ConvertToDegrees()
         {
-            return _hours;
+            SetMinuteDeg(GetMinutes()*6);
+            SetHourDeg(GetHours()*30);
         }
-        public int GetMinuteDeg()
+
+        public int ExecuteAngle()
         {
-            return _minuteDeg;
+            int degreeDiff = Math.Abs(_minuteDeg - _hourDeg);
+            if (degreeDiff > 180)
+            {
+                return 360 - degreeDiff;
+            }
+            return degreeDiff;
         }
-        public int GetHourDeg()
-        {
-            return _hourDeg;
-        }
+
 
         public int ReturnInput()
         {
             return _userInput;
         }
 
-        public void TimeSplitter()
+        public int GetMinutes()
         {
-            _minutes = ((_userInput % 1000) % 100);
-            _hours = (_userInput - _minutes) / 100;
+            return _minutes;
         }
+        public void SetMinutes(int newMinutes)
+        {
+            _minutes = newMinutes;
+        }
+        public int GetHours()
+        {
+            return _hours;
+        }
+        public void SetHours(int newHours)
+        {
+            _hours = newHours;
+        }
+        public int GetMinuteDeg()
+        {
+            return _minuteDeg;
+        }
+        public void SetMinuteDeg(int newMinuteDeg)
+        {
+            _minuteDeg = newMinuteDeg;
+        }
+
+        public int GetHourDeg()
+        {
+            return _hourDeg;
+        }
+        public void SetHourDeg(int newHourDeg)
+        {
+            _hourDeg = newHourDeg;
+        }
+
+
+
+
     }
 }
